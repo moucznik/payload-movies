@@ -20,7 +20,7 @@ Core features:
 - [SEO](#seo)
 - [Website](#website)
 
-## Quick Start
+## Quick Start here
 
 To spin up this example locally, follow these steps:
 
