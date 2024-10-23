@@ -18,6 +18,7 @@
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start"
   },
   "dependencies": {
+    "@payloadcms/db-postgres": "beta",
     "@payloadcms/live-preview-react": "beta",
     "@payloadcms/next": "beta",
     "@payloadcms/plugin-cloud": "beta",
@@ -27,6 +28,7 @@
     "@payloadcms/plugin-search": "beta",
     "@payloadcms/plugin-seo": "beta",
     "@payloadcms/richtext-lexical": "beta",
+    "@payloadcms/storage-vercel-blob": "^3.0.0-beta.29",
     "@payloadcms/ui": "beta",
     "@radix-ui/react-checkbox": "^1.0.4",
     "@radix-ui/react-label": "^2.0.2",
@@ -49,8 +51,7 @@
     "react-hook-form": "7.45.4",
     "sharp": "0.32.6",
     "tailwind-merge": "^2.3.0",
-    "tailwindcss-animate": "^1.0.7",
-    "@payloadcms/db-postgres": "beta"
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^13.1.6",

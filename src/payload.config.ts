@@ -7,6 +7,7 @@ import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'
 import { redirectsPlugin } from '@payloadcms/plugin-redirects'
 import { seoPlugin } from '@payloadcms/plugin-seo'
 import { searchPlugin } from '@payloadcms/plugin-search'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import {
   BoldFeature,
   FixedToolbarFeature,
@@ -36,7 +37,6 @@ import { Page, Post, Movie } from 'src/payload-types'
 
 import { searchFields } from '@/search/fieldOverrides'
 import { beforeSyncWithSearch } from '@/search/beforeSync'
-
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -203,7 +203,12 @@ export default buildConfig({
         },
       },
     }),
-    payloadCloudPlugin(), // storage-adapter-placeholder
+    vercelBlobStorage({
+      collections: {
+        [Media.slug]: true,
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN || '',
+    }), // storage-adapter-placeholder
   ],
   secret: process.env.PAYLOAD_SECRET!,
   sharp,

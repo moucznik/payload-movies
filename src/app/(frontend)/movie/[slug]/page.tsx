@@ -5,7 +5,13 @@ import { getPayloadHMR } from '@payloadcms/next/utilities'
 import configPromise from '@payload-config'
 import { Media } from '@/payload-types'
 
-export default async function MovieDetails({ params }: { params: { slug: string } }) {
+interface MovieDetailsProps {
+  params: {
+    slug: string
+  }
+}
+
+export default async function MovieDetails({ params }: MovieDetailsProps) {
   const { slug } = params
   const payload = await getPayloadHMR({ config: configPromise })
 
