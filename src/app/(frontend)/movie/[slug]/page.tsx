@@ -7,26 +7,26 @@ import { Media } from '@/payload-types'
 
 interface MovieDetailsProps {
   params: {
-    slug: string
+    slug: string;
   }
 }
 
 export default async function MovieDetails({ params }: MovieDetailsProps) {
-  const { slug } = params
-  const payload = await getPayloadHMR({ config: configPromise })
+  const { slug } = params;
+  const payload = await getPayloadHMR({ config: configPromise });
 
   const movies = await payload.find({
     collection: 'movies',
     where: {
       slug: { equals: slug },
     },
-  })
+  });
 
   if (movies.docs.length === 0) {
-    return notFound()
+    return notFound();
   }
 
-  const movie = movies.docs[0]
+  const movie = movies.docs[0];
 
   return (
     <div className="flex gap-2 mt-5">
@@ -46,5 +46,5 @@ export default async function MovieDetails({ params }: MovieDetailsProps) {
         <p className="italic">{movie.overview}</p>
       </div>
     </div>
-  )
+  );
 }
