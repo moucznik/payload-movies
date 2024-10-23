@@ -8,7 +8,7 @@ This template is right for you if you are working on:
 - A content publishing platform with a fully featured publication workflow
 - A lead generation website with premium content gated behind authentication
 
-Core features:
+Core features: here
 
 - [Pre-configured Payload Config](#how-it-works)
 - [Authentication](#users-authentication)
