@@ -26,6 +26,8 @@ import {
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
 import { slugField } from '@/fields/slug'
+import { AlertBox } from '@/components/Alert'
+import { SaveButton } from '@payloadcms/ui'
 
 export const Movies: CollectionConfig = {
   slug: 'movies',
@@ -69,6 +71,43 @@ export const Movies: CollectionConfig = {
         {
           fields: [
             {
+              name: 'name',
+              type: 'text',
+              required: true,
+            },
+            {
+              name: 'url',
+              type: 'text',
+              required: true,
+            },
+            {
+              name: 'votes',
+              type: 'number',
+              required: true,
+            },
+            {
+              name: 'poster',
+              type: 'upload',
+              relationTo: 'media',
+              required: true,
+            },
+            {
+              name: 'overview',
+              type: 'text',
+              required: true,
+            },
+            {
+              name: 'tagline',
+              type: 'text',
+              required: true,
+            },
+            {
+              name: 'genres',
+              type: 'array',
+              fields: [{ name: 'name', type: 'text' }],
+              required: true,
+            },
+            {
               name: 'content',
               type: 'richText',
               editor: lexicalEditor({
@@ -84,7 +123,7 @@ export const Movies: CollectionConfig = {
                 },
               }),
               label: false,
-              required: true,
+              required: false,
             },
           ],
           label: 'Content',

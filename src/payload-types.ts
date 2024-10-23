@@ -548,7 +548,17 @@ export interface Form {
 export interface Movie {
   id: number;
   title: string;
-  content: {
+  name: string;
+  url: string;
+  votes: number;
+  poster: number | Media;
+  overview: string;
+  tagline: string;
+  genres: {
+    name?: string | null;
+    id?: string | null;
+  }[];
+  content?: {
     root: {
       type: string;
       children: {
@@ -562,7 +572,7 @@ export interface Movie {
       version: number;
     };
     [k: string]: unknown;
-  };
+  } | null;
   relatedPosts?: (number | Movie)[] | null;
   categories?: (number | Category)[] | null;
   meta?: {

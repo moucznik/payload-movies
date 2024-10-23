@@ -1,5 +1,26 @@
-import PageTemplate, { generateMetadata } from './[slug]/page'
+import React from 'react'
 
-export default PageTemplate
+import { getPayloadHMR } from '@payloadcms/next/utilities'
+import configPromise from '@payload-config'
 
-export { generateMetadata }
+import MovieCards from './MovieCards'
+
+
+const Page = async () => {
+  const payload = await getPayloadHMR({ config: configPromise })
+
+  const movies = await payload.find({
+    collection: 'movies',
+    sort: '-dateAdded',
+  })
+
+  return (
+    <>
+      <main className="mt-5">
+        <MovieCards movies={movies.docs} />
+      </main>
+    </>
+  )
+}
+
+export default Page
