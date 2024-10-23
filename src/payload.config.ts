@@ -202,14 +202,18 @@ export default buildConfig({
         },
       },
     }),
-    vercelBlobStorage({
-      enabled: true, // Optional, defaults to true
-      // Specify which collections should use Vercel Blob
-      collections: {
-        [Media.slug]: true,
-      },
-      token: process.env.BLOB_READ_WRITE_TOKEN!,
-    }),
+    // Conditionally include vercelBlobStorage plugin
+    ...(process.env.BLOB_READ_WRITE_TOKEN
+      ? [
+          vercelBlobStorage({
+            enabled: true, // Optional, defaults to true
+            collections: {
+              [Media.slug]: true,
+            },
+            token: process.env.BLOB_READ_WRITE_TOKEN,
+          }),
+        ]
+      : []),
   ],
   secret: process.env.PAYLOAD_SECRET!,
   sharp,
