@@ -26,8 +26,6 @@ import {
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
 import { slugField } from '@/fields/slug'
-import { AlertBox } from '@/components/Alert'
-import { SaveButton } from '@payloadcms/ui'
 
 export const Movies: CollectionConfig = {
   slug: 'movies',
