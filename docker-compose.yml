@@ -1,31 +1,16 @@
 version: '3'
-
 services:
-  payload:
-    image: node:18-alpine
+  postgres:
+    image: postgres:16.0-alpine
+    container_name: my_payload_postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: payload_db
     ports:
-      - '3000:3000'
+      - "5432:5432"  # Expose port 5432 on your local machine
     volumes:
-      - .:/home/node/app
-      - node_modules:/home/node/app/node_modules
-    working_dir: /home/node/app/
-    command: sh -c "yarn install && yarn dev"
-    depends_on:
-      - mongo
-    env_file:
-      - .env
-
-  mongo:
-    image: mongo:latest
-    ports:
-      - '27017:27017'
-    command:
-      - --storageEngine=wiredTiger
-    volumes:
-      - data:/data/db
-    logging:
-      driver: none
+      - postgres_data:/var/lib/postgresql/data
 
 volumes:
-  data:
-  node_modules:
+  postgres_data:

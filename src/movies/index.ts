@@ -7,7 +7,7 @@ export const searchMovies = async (query: string) => {
   //   const response = await fetch('fff')
 
   //   const { results } = await response.json()
-  console.log(query)
+  // console.log(query)
 
   return [query]
 }
