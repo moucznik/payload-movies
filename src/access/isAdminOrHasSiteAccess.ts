@@ -1,5 +1,5 @@
 import { Site } from '@/payload-types'
-import { Access } from 'payload'
+import { Access, FieldAccess } from 'payload'
 
 export const isAdminOrHasSiteAccess =
   (siteIDFieldName: string = 'site'): Access =>
@@ -38,5 +38,33 @@ export const isAdminOrHasSiteAccess =
     }
 
     // Reject everyone else
+    return false
+  }
+
+// Field-level access function
+export const isAdminOrHasFieldAccess =
+  (siteIDFieldName: string = 'site'): FieldAccess =>
+  ({ req: { user }, data }) => {
+    if (user) {
+      // Admin role can access all fields
+      if (user.roles.includes('admin')) return true
+
+      // Editor role with specific site access
+      if (user.roles.includes('editor') && user.sites && user.sites.length > 0) {
+        const siteIDs = user.sites
+          .filter((site): site is Site => typeof site === 'object' && 'id' in site)
+          .map((site) => site.id)
+
+        // Check if the field's site ID matches one of the user's sites
+        if (data?.[siteIDFieldName] && siteIDs.includes(data[siteIDFieldName])) {
+          return true
+        }
+
+        // Deny access if the field’s site ID does not match
+        return false
+      }
+    }
+
+    // Deny access for all others
     return false
   }

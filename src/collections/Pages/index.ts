@@ -20,6 +20,8 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
+import { isAdminOrHasFieldAccess, isAdminOrHasSiteAccess } from '@/access/isAdminOrHasSiteAccess'
+import { isAdmin } from '@/access/isAdmin'
 export const Pages: CollectionConfig = {
   slug: 'pages',
   access: {
@@ -55,6 +57,24 @@ export const Pages: CollectionConfig = {
       name: 'title',
       type: 'text',
       required: true,
+    },
+    {
+      name: 'site',
+      type: 'relationship',
+      relationTo: 'sites',
+      required: true,
+      // If user is not admin, set the site by default
+      // to the first site that they have access to
+      access: {
+        read: authenticated,
+        update: isAdminOrHasFieldAccess('id'),
+        create: isAdminOrHasFieldAccess('id'),
+      },
+      defaultValue: ({ user }) => {
+        if (!user.roles.includes('admin') && user.sites?.[0]) {
+          return user.sites[0]
+        }
+      },
     },
     {
       type: 'tabs',
