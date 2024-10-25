@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['next', 'plugin:@lexical/reccomended'],
+  extends: ['next'],
   root: true,
   parserOptions: {
     project: ['./tsconfig.json'],
