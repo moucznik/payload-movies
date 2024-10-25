@@ -36,7 +36,6 @@ export const RenderBlocks: React.FC<{
             if (Block) {
               return (
                 <div className="my-16" key={index}>
-                  {/* @ts-expect-error */}
                   <Block {...block} />
                 </div>
               )
