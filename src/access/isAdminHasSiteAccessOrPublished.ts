@@ -1,10 +1,10 @@
-import { Access } from "payload";
+import { Access } from 'payload'
 
 export const isAdminOrHasSiteAccessOrPublished: Access = ({ req: { user } }) => {
   // Need to be logged in
   if (user) {
     // If user has role of 'admin'
-    if (user.roles?.includes('admin')) return true;
+    if (user.roles?.includes('admin')) return true
 
     // If user has role of 'editor' and has access to a site,
     // return a query constraint to restrict the documents this user can edit
@@ -14,23 +14,25 @@ export const isAdminOrHasSiteAccessOrPublished: Access = ({ req: { user } }) => 
         or: [
           {
             site: {
-              in: user.sites
-            }
+              in: user.sites,
+            },
           },
           {
             site: {
               exists: false,
-            }
-          }
-        ]
+            },
+          },
+        ],
       }
     }
   }
 
   // Non-logged in users can only read published docs
   return {
-    _status: {
-      equals: 'published'
-    }
-  };
+    or: [
+      {
+        _status: { equals: 'published' },
+      },
+    ],
+  }
 }
