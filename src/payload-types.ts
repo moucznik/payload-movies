@@ -17,6 +17,7 @@ export interface Config {
     categories: Category;
     users: User;
     movies: Movie;
+    sites: Site;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -62,6 +63,7 @@ export interface UserAuthOperations {
 export interface Page {
   id: number;
   title: string;
+  site: number | Site;
   hero: {
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
     richText?: {
@@ -109,6 +111,16 @@ export interface Page {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sites".
+ */
+export interface Site {
+  id: number;
+  title: string;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -340,6 +352,8 @@ export interface Post {
 export interface User {
   id: number;
   name?: string | null;
+  roles: ('admin' | 'editor')[];
+  sites?: (number | Site)[] | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -696,6 +710,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'movies';
         value: number | Movie;
+      } | null)
+    | ({
+        relationTo: 'sites';
+        value: number | Site;
       } | null)
     | ({
         relationTo: 'redirects';

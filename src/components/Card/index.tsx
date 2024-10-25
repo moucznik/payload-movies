@@ -54,6 +54,7 @@ export const Card: React.FC<{
 
                     return (
                       <Fragment key={index}>
+                        Jiri herre
                         {categoryTitle}
                         {!isLast && <Fragment>, &nbsp;</Fragment>}
                       </Fragment>
