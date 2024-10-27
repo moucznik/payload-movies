@@ -5,8 +5,8 @@ export const Logo = () => {
     /* eslint-disable @next/next/no-img-element */
     <img
       alt="Payload Logo"
-      className="max-w-[9.375rem] invert dark:invert-0"
-      src="https://raw.githubusercontent.com/payloadcms/payload/main/packages/payload/src/admin/assets/images/payload-logo-light.svg"
+      className="max-w-[6rem] invert dark:invert-0"
+      src="https://notum.cz/wp-content/uploads/2020/04/notum_white.svg"
     />
   )
 }
