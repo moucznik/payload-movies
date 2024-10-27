@@ -23,6 +23,10 @@ const Users: CollectionConfig = {
       type: 'text',
     },
     {
+      name: 'richtext',
+      type: 'richText'
+    },
+    {
       name: 'roles',
       // Save this field to JWT so we can use from `req.user`
       saveToJWT: true,
