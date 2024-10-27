@@ -8,7 +8,6 @@ import React from 'react'
 import { AdminBar } from '@/components/AdminBar'
 import { Footer } from '@/Footer/Component'
 import { Header } from '@/Header/Component'
-import  Header2 from './Header'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { Providers } from '@/providers'
 import { InitTheme } from '@/providers/Theme/InitTheme'
@@ -37,7 +36,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <LivePreviewListener />
 
           <Header />
-          <Header2 />
           {children}
           <Footer />
         </Providers>

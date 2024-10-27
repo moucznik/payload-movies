@@ -10,7 +10,6 @@ import RichText from '@/components/RichText'
 
 import type { Post } from '@/payload-types'
 
-import { PostHero } from '@/heros/PostHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 
@@ -49,8 +48,6 @@ export default async function Post({ params: paramsPromise }: Args) {
 
       {/* Allows redirects for valid pages too */}
       <PayloadRedirects disableNotFound url={url} />
-
-      <PostHero post={post} />
 
       <div className="flex flex-col items-center gap-4 pt-8">
         <div className="container lg:mx-0 lg:grid lg:grid-cols-[1fr_48rem_1fr] grid-rows-[1fr]">

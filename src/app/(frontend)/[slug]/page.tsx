@@ -9,7 +9,6 @@ import React, { cache } from 'react'
 import type { Page as PageType } from '@/payload-types'
 
 import { RenderBlocks } from '@/blocks/RenderBlocks'
-import { RenderHero } from '@/heros/RenderHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { RefreshRouteOnSave } from '@/components/RefreshRouteOnSave'
@@ -54,16 +53,15 @@ export default async function Page({ params: paramsPromise }: Args) {
     return <PayloadRedirects url={url} />
   }
 
-  const { hero, layout } = page
+  const { layout } = page
 
   return (
-    <article className="pt-16 pb-24">
+    <article className="pb-24">
       <RefreshRouteOnSave />
       <PageClient />
       {/* Allows redirects for valid pages too */}
       <PayloadRedirects disableNotFound url={url} />
 
-      <RenderHero {...hero} />
       <RenderBlocks blocks={layout} />
     </article>
   )
