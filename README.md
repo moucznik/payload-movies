@@ -1,5 +1,28 @@
 # Payload Website Template
 
+## How to install
+npm i --legacy-peer-deps
+
+# Add this .env.local
+
+# PostgreSQL connection details
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=mysecretpassword
+POSTGRES_DATABASE=postgres
+POSTGRES_HOST=localhost  # Connect to Postgres running in Docker
+POSTGRES_URL=postgres://postgres:mysecretpassword@localhost:5432/payload_db
+POSTGRES_PRISMA_URL=postgres://postgres:mysecretpassword@localhost:5432/payload_db
+POSTGRES_URL_NON_POOLING=postgres://postgres:mysecretpassword@localhost:5432/payload_db
+POSTGRES_URL_NO_SSL=postgres://postgres:mysecretpassword@localhost:5432/payload_db
+
+# Payload CMS secret key
+PAYLOAD_SECRET=your-secret-key
+
+# Public server URL (if applicable)
+PAYLOAD_PUBLIC_SERVER_URL=http://localhost:3000 
+
+---
+
 This is the official [Payload Website Template](https://github.com/payloadcms/payload/blob/main/templates/website). Use it to power websites, blogs, or portfolios from small to enterprise. This repo includes a fully-working backend, enterprise-grade admin panel, and a beautifully designed, production-ready website.
 
 This template is right for you if you are working on:

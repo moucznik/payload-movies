@@ -6,8 +6,6 @@ import type { Footer } from '@/payload-types'
 
 import { ThemeSelector } from '@/providers/Theme/ThemeSelector'
 import { CMSLink } from '@/components/Link'
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
-
 export async function Footer() {
   const footer: Footer = await getCachedGlobal('footer')()
 
@@ -25,11 +23,6 @@ export async function Footer() {
             />
           </picture>
         </Link>
-
-        <Alert>
-          <AlertTitle>Success</AlertTitle>
-          <AlertDescription>This is a success alert with the default styling.</AlertDescription>
-        </Alert>
 
         <div className="flex flex-col-reverse items-start md:flex-row gap-4 md:items-center">
           <ThemeSelector />

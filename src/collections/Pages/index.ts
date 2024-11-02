@@ -24,15 +24,15 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
-import { isAdminOrHasFieldAccess } from '@/access/isAdminOrHasSiteAccess'
+import { isAdminOrHasFieldAccess, isAdminOrHasSiteAccess } from '@/access/isAdminOrHasSiteAccess'
 import { TextRevealByWord } from '@/blocks/TextReveal/config'
 export const Pages: CollectionConfig = {
   slug: 'pages',
   access: {
-    create: authenticated,
-    delete: authenticated,
+    create: isAdminOrHasSiteAccess('id'),
+    delete: isAdminOrHasSiteAccess('id'),
     read: authenticatedOrPublished,
-    update: authenticated,
+    update: isAdminOrHasSiteAccess('id'),
   },
   admin: {
     defaultColumns: ['title', 'slug', 'updatedAt'],
