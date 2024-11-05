@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Logo = () => {
+const Logo = () => {
   return (
     /* eslint-disable @next/next/no-img-element */
     <img
@@ -10,3 +10,5 @@ export const Logo = () => {
     />
   )
 }
+
+export default Logo
