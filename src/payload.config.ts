@@ -13,6 +13,7 @@ import {
   HeadingFeature,
   ItalicFeature,
   LinkFeature,
+  TreeViewFeature,
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
 import sharp from 'sharp' // editor-import
@@ -36,6 +37,7 @@ import { Page, Post, Movie } from 'src/payload-types'
 import { searchFields } from '@/search/fieldOverrides'
 import { beforeSyncWithSearch } from '@/search/beforeSync'
 import { Sites } from './collections/Sites'
+import { LexicalServerFeature } from './embedFeatures/server'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -75,8 +77,11 @@ export default buildConfig({
   },
   // This config helps us configure global or default features that the other editors can inherit
   editor: lexicalEditor({
-    features: () => {
+    features: ({defaultFeatures}) => {
       return [
+        ...defaultFeatures,
+        LexicalServerFeature(),
+        TreeViewFeature(),
         UnderlineFeature(),
         BoldFeature(),
         ItalicFeature(),
